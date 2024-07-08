@@ -51,11 +51,11 @@ export const ProductCard = ({ children, product }: Props) => {
   return (
     <div className={styles.productCard}>
         {children}
-        {/* <ProductImage img={product.img}/>
-
-        <ProductTitle title={product.title}/>
-
-        <ProductButtons counter={counter} increaseBy={increaseBy}/> */}
     </div>
   )
 }
+
+
+ProductCard.Title = ProductTitle;
+ProductCard.Image = ProductImage;
+ProductCard.Buttons = ProductButtons;
