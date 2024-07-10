@@ -11,7 +11,7 @@ export const ShoppingPage = () => {
         <h1>Shopping Store</h1>
         <hr/>
         <div style={{
-            display: 'flex,',
+            display: 'flex',
             flexDirection: 'row',
             flexWrap: 'wrap'
         }}>
@@ -20,6 +20,7 @@ export const ShoppingPage = () => {
               <ProductCard.Title title='Café' />
               <ProductCard.Buttons />
             </ProductCard>
+            
             <ProductCard product={product}>
               <ProductImage />
               <ProductTitle />
