@@ -3,7 +3,8 @@ import '../styles/custom-styles.css';
 
 const product = {
     id: '1',
-    title: 'Coffee Mug - Card'
+    title: 'Coffee Mug - Card',
+    img: ''
 }
 
 export const ShoppingPage = () => {
@@ -16,19 +17,22 @@ export const ShoppingPage = () => {
             flexDirection: 'row',
             flexWrap: 'wrap'
         }}>
-            <ProductCard product={product}>
-              <ProductCard.Image />
-              <ProductCard.Title />
-              <ProductCard.Buttons />
+            <ProductCard 
+              product={product}
+              className="bg-dark text-white"
+            >
+              <ProductCard.Image className="custom-image" />
+              <ProductCard.Title className="text-bold" />
+              <ProductCard.Buttons className="custom-buttons" />
             </ProductCard>
             
             <ProductCard
               product={product}
-              className="bg-dark"
+              className="bg-dark text-white"
             >
               <ProductImage className="custom-image" />
-              <ProductTitle className="text-white text-bold" />
-              <ProductButtons />
+              <ProductTitle className="text-bold" />
+              <ProductButtons className="custom-buttons" />
             </ProductCard>
         </div>
     </div>
