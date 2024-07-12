@@ -54,6 +54,7 @@ export const ShoppingPage = () => {
               className="bg-dark text-white"
               key={ product.id }
               onChange={ (e) => onProductCountChange(e) }
+              value={shoppingCart[product.id]?.count || 0 }
             >
               <ProductImage className="custom-image" />
               <ProductTitle className="text-bold" />
@@ -64,20 +65,26 @@ export const ShoppingPage = () => {
         </div>
 
         <div className='shopping-cart'>
-          <ProductCard
-            product={ product2 }
-            className="bg-dark text-white"
-            style={{ width: '100px' }}
-          >
-            <ProductImage className="custom-image" />
-            <ProductButtons className="custom-buttons" />
-          </ProductCard>
-        </div>
-
-        <div>
-          <code>
-            { JSON.stringify(shoppingCart, null, 5) }
-          </code>
+          {
+            Object.entries(shoppingCart).map( ([key, product]) => (
+              <ProductCard
+                product={ product }
+                className="bg-dark text-white"
+                style={{ width: '100px' }}
+                key={key}
+                value={product.count}
+                onChange={ (e) => onProductCountChange(e) }
+              >
+                <ProductImage className="custom-image" />
+                <ProductButtons 
+                  className="custom-buttons" 
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'center'
+                  }}/>
+              </ProductCard>
+            ))
+          }
         </div>
     </div>
   )
