@@ -1,41 +1,10 @@
-import { useState } from 'react';
 import { ProductCard, ProductImage, ProductTitle, ProductButtons } from '../components';
-import { Product } from '../interfaces/interfaces';
 import '../styles/custom-styles.css';
-
-const product = {
-    id: '1',
-    title: 'Coffee Mug - Card',
-    img: './coffee-mug.png'
-}
-
-const product2 = {
-  id: '2',
-  title: 'Coffee Mug - Meme',
-  img: './coffee-mug2.png'
-}
-
-const products: Product[] = [product, product2];
-
-interface ProductInCart extends Product {
-  count: number;
-}
+import { products } from '../data/products';
+import { useShoppingCart } from '../hooks/useShoppingCart';
 
 export const ShoppingPage = () => {
-  const [shoppingCart, setShoppingCart] = useState<{ [key: string]: ProductInCart }>({});
-  const onProductCountChange = ({ count, product }: { count: number, product: Product }) => {
-    setShoppingCart( oldShoppingCart => {
-      if (count === 0) {
-        const { [product.id]: toDelete, ...rest } = oldShoppingCart;
-        return rest;
-      }
-
-      return {
-        ...oldShoppingCart,
-        [ product.id ]: { ...product, count }
-      }
-    } )
-  }
+  const { shoppingCart, onProductCountChange } = useShoppingCart();
 
   return (
     <div>
@@ -53,7 +22,7 @@ export const ShoppingPage = () => {
               product={ product }
               className="bg-dark text-white"
               key={ product.id }
-              onChange={ (e) => onProductCountChange(e) }
+              onChange={ onProductCountChange }
               value={shoppingCart[product.id]?.count || 0 }
             >
               <ProductImage className="custom-image" />
@@ -73,7 +42,7 @@ export const ShoppingPage = () => {
                 style={{ width: '100px' }}
                 key={key}
                 value={product.count}
-                onChange={ (e) => onProductCountChange(e) }
+                onChange={ onProductCountChange }
               >
                 <ProductImage className="custom-image" />
                 <ProductButtons 
